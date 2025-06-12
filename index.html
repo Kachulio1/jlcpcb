@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY 3-Axis CNC Plotter Project - JLCPCB</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>DIY 3-Axis CNC Plotter Using DC Motors with Optical Encoders</h1>
+        <p class="subtitle">A project powered by JLCPCB</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#parts-list">Parts List</a></li>
+            <li><a href="#circuit-details">Circuit Details</a></li>
+            <li><a href="#arduino-code">Arduino Code</a></li>
+            <li><a href="#calibration">Calibration</a></li>
+            <li><a href="#inkscape-guide">Inkscape Guide</a></li>
+            <li><a href="#ugs-guide">UGS Guide</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#example-gcode">Example G-code</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <div id="introduction-content"></div>
+            <a href="README.md" class="read-more">Read more...</a>
+        </section>
+
+        <section id="parts-list">
+            <h2>Parts List</h2>
+            <div id="parts-list-content"></div>
+            <a href="parts-list.md" class="read-more">Read more...</a>
+        </section>
+
+        <section id="circuit-details">
+            <h2>Circuit Details</h2>
+            <div id="circuit-details-content"></div>
+            <a href="circuit-details.md" class="read-more">Read more...</a>
+        </section>
+
+        <section id="arduino-code">
+            <h2>Arduino Code</h2>
+            <div id="arduino-code-content"></div>
+            <a href="arduino-code.md" class="read-more">Read more...</a>
+        </section>
+
+        <section id="calibration">
+            <h2>Calibration Guide</h2>
+            <div id="calibration-content"></div>
+            <a href="calibration-guide.md" class="read-more">Read more...</a>
+        </section>
+
+        <section id="inkscape-guide">
+            <h2>Inkscape Guide</h2>
+            <div id="inkscape-guide-content"></div>
+            <a href="inkscape-guide.md" class="read-more">Read more...</a>
+        </section>
+
+        <section id="ugs-guide">
+            <h2>Universal G-code Sender Guide</h2>
+            <div id="ugs-guide-content"></div>
+            <a href="ugs-guide.md" class="read-more">Read more...</a>
+        </section>
+
+        <section id="troubleshooting">
+            <h2>Troubleshooting</h2>
+            <div id="troubleshooting-content"></div>
+            <a href="troubleshooting.md" class="read-more">Read more...</a>
+        </section>
+
+        <section id="example-gcode">
+            <h2>Example G-code</h2>
+            <p>Here are some example G-code files you can use with your CNC plotter:</p>
+            <ul>
+                <li><a href="example-gcode/test-circle.gcode">Test Circle</a></li>
+                <li><a href="example-gcode/test-square.gcode">Test Square</a></li>
+                <li><a href="example-gcode/jlcmc-logo.gcode">JLCMC Logo</a></li>
+                <li><a href="example-gcode/complete-test-pattern.gcode">Complete Test Pattern</a></li>
+            </ul>
+            <a href="example-gcode/README.md" class="read-more">Read more about G-code examples...</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>This project is made possible with PCB manufacturing by <a href="https://jlcpcb.com" target="_blank">JLCPCB</a></p>
+        <p>&copy; <span id="current-year"></span> - All rights reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Load markdown content
+        function loadMarkdownContent() {
+            const sections = [
+                {id: 'introduction-content', file: 'README.md'},
+                {id: 'parts-list-content', file: 'parts-list.md'},
+                {id: 'circuit-details-content', file: 'circuit-details.md'},
+                {id: 'arduino-code-content', file: 'arduino-code.md'},
+                {id: 'calibration-content', file: 'calibration-guide.md'},
+                {id: 'inkscape-guide-content', file: 'inkscape-guide.md'},
+                {id: 'ugs-guide-content', file: 'ugs-guide.md'},
+                {id: 'troubleshooting-content', file: 'troubleshooting.md'}
+            ];
+            
+            // Simple preview implementation (would need a markdown parser for full functionality)
+            sections.forEach(section => {
+                const element = document.getElementById(section.id);
+                if (element) {
+                    fetch(section.file)
+                        .then(response => response.text())
+                        .then(text => {
+                            const preview = text.split('\n').slice(0, 3).join('\n');
+                            element.textContent = preview + '...';
+                        })
+                        .catch(error => {
+                            console.error('Error loading markdown:', error);
+                        });
+                }
+            });
+        }
+        
+        window.addEventListener('load', loadMarkdownContent);
+    </script>
+</body>
+</html>
